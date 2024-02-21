@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+#define LIMIT 30000
+
+void CreateArray(int *p, int N) {
+    int i;
+    p = (int *)malloc(N * sizeof(int));
+    srand((long)210);
+    for (i = 0; i < N; i++)
+        *(p + i) = rand() % LIMIT;
+
+    for (i = 0; i < N; i++)
+        printf("%d ", p[i]);
+}
+
+void Search(int *p, int N, int key) {
+    int comparisons = 0, success_search = 0;
+    int i;
+
+    clock_t start, end;
+    double elapsed;
+    start = clock();
+
+    for (i = 0; i < N; i++) {
+        if (key == p[i]) {
+            comparisons++;
+            success_search++;
+            printf("\nFound!");
+            break;
+        } else {
+            comparisons++;
+            printf("\nNot found!");
+        }
+    }
+
+    end = clock();
+    elapsed = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+    printf("\nTotal comparisons: %d \n", comparisons);
+    printf("Time elapsed: %f \n", elapsed);
+    printf("Successful comparisons: %d \n\n", success_search);
+}
+
+int main() {
+    int N, i, p, key;
+
+    key = 1;
+    CreateArray(&p, N = 7);
+    Search(&p, N, key);
+}
