@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main ()
+{
+  int n,i;
+  int *p;
+  int even=0,odd=0;
+  printf("Enter the number of elements :");
+  scanf("%d",&n);
+  p=(int*)malloc(n*sizeof(int));
+  if(p==NULL)
+  {
+    printf("Memory not allocated");
+  }
+  for(i=0;i<n;i++)
+    {
+      scanf("%d",p+i);
+    }
+  for(i=0;i<n;i++)
+    {
+      if(*(p+i)%2==0)
+      {
+        even=even+*(p+i);
+      }
+      else{
+        odd=odd+*(p+i);
+      }
+    }
+  printf("Sum of even numbers is %d\n",even);
+  printf("Sum of odd numbers is %d\n",odd);
+}
